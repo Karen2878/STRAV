@@ -1,0 +1,4 @@
+2025-04-07 01:04:02: Error PDO: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u598872392_stravhostiger1.DocumentoVehiculo' doesn't exist
+2025-04-07 01:06:29: Error PDO: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u598872392_stravhostiger1.DocumentoVehiculo' doesn't exist
+2025-05-16 22:07:39: No hay usuario autenticado
+2025-05-16 22:08:55: No hay usuario autenticado

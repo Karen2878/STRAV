@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juego Stravi Runner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html {
+      background-color: #000; /* Fondo negro */
+    }
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: url('models/fondo.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+    header#game-header {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+    header#game-header h1 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    header#game-header nav {
+      margin-top: 10px;
+    }
+    header#game-header button {
+      font-family: 'Press Start 2P', cursive;
+      margin: 0 10px;
+      padding: 5px 10px;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #monedas-container {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      z-index: 1000;
+    }
+    #monedas-container img {
+      width: 50px;
+      height: 50px;
+      margin-right: 5px;
+    }
+    #preguntas-container {
+      bottom: 80px; /* ↓ Cambia esto para ajustar la altura */
+      left: 0;
+      right: 0;
+      margin: 0 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    #preguntas-container button {
+      font-family: 'Press Start 2P', cursive;
+      background: #FFD700;
+      border: none;
+      padding: 10px 15px;
+      margin: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #preguntas-container button:hover {
+      transform: scale(1.05);
+    }
+    footer#game-footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.7rem;
+    }
+    footer#game-footer a {
+      color: #FFD700;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header id="game-header" class="text-center p-3 bg-dark text-white">
+    <div class="container">
+      <h1 class="fs-4">🏃‍♂️ Stravi Runner</h1>
+      <nav class="mt-3 d-flex justify-content-center flex-wrap gap-2">
+        <button id="btn-inicio" class="btn btn-warning">Inicio</button>
+        <button id="btn-puntajes" class="btn btn-warning">Puntajes</button>
+        <button id="btn-ayuda" class="btn btn-warning">Ayuda</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div id="contenedor">
+      <div id="posiciones"></div>
+    </div>
+
+    <!-- Overlay para oscurecer el fondo -->
+  <div id="overlay-ayuda" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 999;"></div>
+
+    <div id="ui">
+      <div id="monedas-container">
+        <img src="models/Stravo.png" alt="Monedas" class="img-fluid" style="max-width: 50px;" />
+        <span id="monedas">0</span>
+      </div>
+
+      <div id="ayuda-container" style="display: none; position: absolute; top: 60px; left: 0; right: 0; margin: 0 20px; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 15px; border-radius: 12px; text-align: center; font-size: 12px; text-align: left; z-index: 1000;">
+      <p>🕹️ ¡Ey, piloto del asfalto!<br>
+      ¿Sabes como se juega esta aventura? Te lo explico... 🚀</p>
+
+      <p><strong>¿Cómo se juega?: 📋</strong></p>
+      <p>🧠 Responde las preguntas.</p>
+      <p>✅ Si aciertas: avanzas y ganas una moneda.</p>
+      <p>❌ Si fallas: retrocedes... y no hay moneda (¡ay, ese bache de la vida!).</p>
+      <p>🎯 Hay 10 preguntas, 10 chances de brillar.</p>
+
+      <p>💡 <em>Consejo de oro:</em><br>
+      “Con cada respuesta te acercas a ser un maestro de los Stravos... o al menos a no olvidar el SOAT 😅”</p>
+
+      <p>✨ ¡Demuestra que eres más veloz que los trámites!</p>
+      
+      <button id="btn-cerrar-ayuda" style="font-family: 'Press Start 2P', cursive; background: #FFD700; border: none; padding: 8px 12px; margin-top: 15px; border-radius: 8px; cursor: pointer;">
+      Cerrar
+      </button>
+    </div>
+
+    </div>
+  </main>
+
+  <div id="preguntas-container" class="bottom-0 start-0 end-0 m-3 bg-dark bg-opacity-75 text-white p-3 rounded text-center">
+        <p id="textoPregunta">¡Juega con Stravi y gana Stravos!</p>
+        <div id="opciones" class="d-flex flex-wrap justify-content-center gap-2"></div>
+      </div>
+
+  <div class="container my-5" style="bottom: 10px;">
+    <h2 class="text-center text-primary mb-4">🛣️ Cuestionario de Seguridad Vial</h2>
+    <p class="text-center mb-5">Este cuestionario te ayudará a reforzar conocimientos clave sobre normas de tránsito en Bogotá y Colombia. ¡Aprender es prevenir!</p>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>1. ¿Cuál es uno de los principales factores de accidentes viales en Bogotá?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Exceso de velocidad.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>2. ¿Qué elemento de seguridad es obligatorio al conducir una motocicleta en Bogotá?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Casco homologado.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>3. ¿Qué significa una luz roja en un semáforo?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Detenerse completamente.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>4. ¿Qué día es pico y placa para placas terminadas en 1 y 2 en Bogotá (2025)?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Lunes.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>5. ¿Cuál es la velocidad máxima permitida en vías urbanas en Bogotá?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: 50 km/h.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>6. ¿Qué hacer si hay un peatón cruzando por un paso de cebra?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Detener el vehículo.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>7. ¿Quién tiene prioridad en una glorieta en Bogotá?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: El que ya circula dentro.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>8. ¿Qué significa una señal de tránsito en forma de triángulo invertido?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Ceda el paso.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>9. ¿Cuál es una infracción de tránsito en Colombia?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: No portar licencia de conducción.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-3 bg-white shadow border-start border-primary border-4 rounded">
+          <p><strong>10. ¿Cuál de estos elementos es obligatorio para vehículos en Colombia?</strong></p>
+          <div class="bg-light p-2 border-start border-success border-3">✅ Respuesta: Botiquín de primeros auxilios.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="game-footer" class="bg-dark text-white text-center p-3 mt-4 small">
+    <p>© 2025 STRAV | <a href="#" class="text-warning">strav548@gmail.com</a></p>
+  </footer>
+
+  <script type="module" src="game.js"></script>
+  <script src="ui-interactions.js"></script>
+
+  <script>
+    const btnAyuda = document.getElementById("btn-ayuda");
+    const ayudaContainer = document.getElementById("ayuda-container");
+    const btnCerrarAyuda = document.getElementById("btn-cerrar-ayuda");
+    const overlay = document.getElementById("overlay-ayuda");
+
+    btnAyuda.addEventListener("click", () => {
+      ayudaContainer.style.display = "block";
+      overlay.style.display = "block";
+    });
+
+    btnCerrarAyuda.addEventListener("click", () => {
+      ayudaContainer.style.display = "none";
+      overlay.style.display = "none";
+    });
+
+    // Opción extra: cerrar también si se hace clic sobre el overlay
+    overlay.addEventListener("click", () => {
+      ayudaContainer.style.display = "none";
+      overlay.style.display = "none";
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

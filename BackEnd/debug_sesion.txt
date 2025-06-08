@@ -1,0 +1,36 @@
+ID de usuario en sesión: 5
+Vehículos recuperados: [{"idVeh":23,"fechaCompraVeh":"2025-02-25","placaVeh":"ABC","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2021,"imagen":"ewrgth"},{"idVeh":24,"fechaCompraVeh":"2025-02-26","placaVeh":"DEF","tipoVeh":"Camioneta","marcaVeh":"Yamaha","anioVeh":2001,"imagen":"ewrgth"}]
+ID de usuario en sesión: 5
+Vehículos recuperados: [{"idVeh":23,"fechaCompraVeh":"2025-02-25","placaVeh":"ABC","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2021,"imagen":"ewrgth"},{"idVeh":24,"fechaCompraVeh":"2025-02-26","placaVeh":"DEF","tipoVeh":"Camioneta","marcaVeh":"Yamaha","anioVeh":2001,"imagen":"ewrgth"}]
+ID de usuario en sesión: 5
+Vehículos recuperados: [{"idVeh":23,"fechaCompraVeh":"2025-02-25","placaVeh":"ABC","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2021,"imagen":"ewrgth"},{"idVeh":24,"fechaCompraVeh":"2025-02-26","placaVeh":"DEF","tipoVeh":"Camioneta","marcaVeh":"Yamaha","anioVeh":2001,"imagen":"ewrgth"},{"idVeh":25,"fechaCompraVeh":"2025-02-24","placaVeh":"XYZ","tipoVeh":"Moto","marcaVeh":"Yamaha","anioVeh":2004,"imagen":"rtyuil.k,jmhngb"}]
+ID de usuario en sesión: 5
+Vehículos recuperados: [{"idVeh":23,"fechaCompraVeh":"2025-02-25","placaVeh":"ABC","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2021,"imagen":"ewrgth"},{"idVeh":24,"fechaCompraVeh":"2025-02-26","placaVeh":"DEF","tipoVeh":"Camioneta","marcaVeh":"Yamaha","anioVeh":2001,"imagen":"ewrgth"},{"idVeh":25,"fechaCompraVeh":"2025-02-24","placaVeh":"XYZ","tipoVeh":"Moto","marcaVeh":"Yamaha","anioVeh":2004,"imagen":"rtyuil.k,jmhngb"}]
+ID de usuario en sesión: 8
+Vehículos recuperados: [{"idVeh":29,"fechaCompraVeh":"2024-10-17","placaVeh":"MIO","tipoVeh":"Carro","marcaVeh":"Mustang","anioVeh":2004,"imagen":"fbvcvbn"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 6
+Vehículos recuperados: [{"idVeh":30,"fechaCompraVeh":"2024-09-13","placaVeh":"ABC123","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2005,"imagen":"erfgthyjuu"}]
+ID de usuario en sesión: 5
+Vehículos recuperados: [{"idVeh":23,"fechaCompraVeh":"2025-02-25","placaVeh":"ABC","tipoVeh":"Carro","marcaVeh":"Chevrolet","anioVeh":2021,"imagen":"ewrgth"},{"idVeh":25,"fechaCompraVeh":"2025-02-24","placaVeh":"XYZ","tipoVeh":"Moto","marcaVeh":"Yamaha","anioVeh":2004,"imagen":"rtyuil.k,jmhngb"}]

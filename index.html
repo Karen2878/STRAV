@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Temprano de Recordatorios y Alertas de tu Vehículo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS personalizado -->
+    <style>
+        
+
+        body {
+            padding-top: 56px; /* Espacio para la navbar fija */
+            background-color: #f5f5f4;
+            color: #333;
+        }
+        
+        .navbar {
+            background-color: #4a4a4a;
+            transition: top 0.3s;
+        }
+        
+        .navbar.hidden {
+            top: -100px;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            max-height: 40px;
+            margin-right: 8px;
+        }
+        
+        .navbar-tagline {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .banner {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            background: rgb(255, 255, 255);
+            min-height: 260px;
+        }
+        
+        .banner .imagenes {
+            display: flex;
+            width: auto;
+            animation: moverBanner 10s linear infinite;
+        }
+        
+        .banner .imagen {
+            flex: 0 0 auto;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        @keyframes moverBanner {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .main-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .mission-vision-section {
+     background-color: #ffffff;
+     padding: 30px 0;
+     margin: 30px 0;
+}
+
+
+        
+        .mission, .vision {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        
+        .service {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .service img {
+            max-height: 130px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .contact {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        
+        .contact img {
+            max-width: 130px;
+            max-height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .purpose-section img {
+            height: auto;
+            max-height: 200px;
+            margin: 10px;
+        }
+        
+        /* Ajustes específicos para móviles */
+        @media (max-width: 767px) {
+            body {
+                padding-top: 56px; /* Reduce el espacio para el navbar en móviles */
+            }
+            
+            .navbar {
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            
+            .navbar-brand img {
+                max-height: 35px;
+            }
+            
+            .navbar-toggler {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .btn-sm {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+            }
+            
+            /* Ajusta el banner para que no ocupe tanto espacio en móviles */
+            .banner {
+                min-height: 150px;
+            }
+            
+            .banner .imagen {
+                width: 50% !important; /* Fuerza a que las imágenes ocupen más espacio */
+            }
+        }
+
+        /* Ajuste adicional para pantallas muy pequeñas */
+        @media (max-width: 380px) {
+            .navbar-brand img {
+                max-height: 30px;
+                margin-right: 5px;
+            }
+            
+            .navbar-brand h1 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar optimizado para móviles -->
+    <nav id="header" class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid px-2">
+            <!-- Logo más compacto en móviles -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="imagenes/logo.png" alt="Logo de STRAV">
+                <div class="d-none d-md-block">
+                    <h1 class="fs-5 mb-0">Sistema Temprano de Recordatorios y Alertas de tu Vehículo</h1>
+                    <p class="navbar-tagline">"La aplicación web y nueva compañera de los conductores bogotanos"</p>
+                </div>
+                <!-- Título más corto para móviles -->
+                <div class="d-block d-md-none">
+                    <h1 class="fs-6 mb-0">STRAV</h1>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="iniciodesesion.php" class="btn btn-outline-light btn-sm me-2">Iniciar Sesión</a>
+                    <a href="registro.html" class="btn btn-outline-light btn-sm">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner">
+        <div class="imagenes">
+            <!-- Imágenes del banner -->
+            <div class="imagen" style="width: 30%;">
+                <img src="imagenes/tecno.PNG" alt="tecno">
+            </div>
+            <div class="imagen" style="width: 30%;">
+                <img src="imagenes/soat.jpg" alt="soat">
+            </div>
+            <div class="imagen" style="width: 40%;">
+                <img src="imagenes/picoyplaca.png" alt="picoyplaca">
+            </div>
+            <div class="imagen" style="width: 40%;">
+                <img src="imagenes/li.png" alt="li">
+            </div>
+            <div class="imagen" style="width: 15%;">
+                <img src="imagenes/impuesto.jpg" alt="impuesto">
+            </div>
+            <div class="imagen" style="width: 30%;">
+                <img src="imagenes/vial.jpg" alt="vial">
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main>
+        <div class="container main-container">
+            <!-- Sección ¿Qué es STRAV? -->
+            <div class="purpose-section" id="nosotros">
+                <h2 class="mb-4">¿Qué es STRAV?</h2>
+                <p>Strav es una aplicación web con la que podrá llevar un mejor manejo de su información y estar al día con las distintas obligaciones y requerimientos de ley de su vehículo de una manera sencilla, segura y eficiente.</p>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-sm-12 text-center mb-3">
+                        <img src="imagenes/ejemplo1.png" alt="ejemplo" class="img-fluid">
+                    </div>
+                    <div class="col-md-4 col-sm-12 text-center mb-3">
+                        <img src="imagenes/ejemplodos.png" alt="ejemplo2" class="img-fluid">
+                    </div>
+                    <div class="col-md-4 col-sm-12 text-center mb-3">
+                        <img src="imagenes/ejemplotres.png" alt="ejemplo3" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Misión y Visión -->
+            <div class="mission-vision-section">
+                <div class="container">
+                    <h2 class="text-center mb-4">Misión y Visión</h2>
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="mission">
+                                <h3>Misión</h3>
+                                <p>Promover una cultura de responsabilidad vehicular,
+                                    beneficiando no solamente a los conductores particulares al
+                                    evitarles el pago de multas costosas y problemas dentro del
+                                    marco legal, sino además contribuir a la continua mejora de
+                                    la seguridad vial y de esta manera reducir la congestión al
+                                    interior de las entidades competentes de tránsito.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="vision">
+                                <h3>Visión</h3>
+                                <p>Vislumbramos un futuro donde cada conductor se sienta
+                                    empoderado y seguro al volante, gracias a la simplicidad y
+                                    eficiencia de nuestra plataforma. Aspiramos a ser el
+                                    referente número uno en soluciones tecnológicas para la
+                                    gestión vehicular, no solo en Bogotá, sino a nivel global.
+                                    Nuestro compromiso es seguir innovando y adaptándonos a las
+                                    necesidades cambiantes de nuestros usuarios, siempre con el
+                                    objetivo de mejorar la seguridad vial y la experiencia de
+                                    manejo, donde la gestión de los documentos vehiculares se
+                                    convierte en un proceso ágil, trasparente y accesible para
+                                    todos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Servicios -->
+            <h3 class="mb-4" id="servicios">Nuestros Servicios</h3>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service">
+                        <img src="imagenes/ejemplo1.png" alt="Servicio 1" class="img-fluid">
+                        <h3>Pico y Placa</h3>
+                        <p>Consulte el Pico y Placa</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service">
+                        <img src="imagenes/ejemplodos.png" alt="Servicio 2" class="img-fluid">
+                        <h3>Soat</h3>
+                        <p>Conozca cuando se vence su SOAT</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service">
+                        <img src="imagenes/ejemplotres.png" alt="Servicio 3" class="img-fluid">
+                        <h3>Tecnicomecánica</h3>
+                        <p>Conozca cuando se vence su Tecnicomecánica</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service">
+                        <img src="imagenes/licencia.png" alt="Servicio 4" class="img-fluid">
+                        <h3>Licencia de conducción</h3>
+                        <p>Conozca cuando debe renovar su Licencia de conducción.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video -->
+            <div class="ratio ratio-16x9 mt-5">
+                <video controls autoplay muted playsinline>
+                    <source src="video/comercial.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+            <!-- Sección Contactos -->
+            <div class="bg-light p-4 mt-5 rounded" id="contacto">
+                <h3 class="text-center mb-4">Contactos</h3>
+                <div class="row">
+                    <div class="col-lg col-md-6 mb-4">
+                        <div class="contact">
+                            <img src="imagenes/Felipe.jpeg" alt="Contacto 1" class="img-fluid">
+                            <h4>A. Felipe Piñeros L.</h4>
+                            <p>Probador</p>
+                            <p>Email: andres1305felipe@gmail.com</p>
+                            <p>Teléfono: +57 3222039248</p>
+                        </div>
+                    </div>
+                    <div class="col-lg col-md-6 mb-4">
+                        <div class="contact">
+                            <img src="imagenes/Karen.jpeg" alt="Contacto 2" class="img-fluid">
+                            <h4>K. Sofía Rueda P.</h4>
+                            <p>Diseñadora</p>
+                            <p>Email: sofiruedapin@gmail.com</p>
+                            <p>Teléfono: +57 3208294894</p>
+                        </div>
+                    </div>
+                    <div class="col-lg col-md-6 mb-4">
+                        <div class="contact">
+                            <img src="imagenes/Sergio.jpeg" alt="Contacto 3" class="img-fluid">
+                            <h4>Sergio A. Cuesta O.</h4>
+                            <p>Analista</p>
+                            <p>Email: sergio.cuesta123@gmail.com</p>
+                            <p>Teléfono: +57 3043891552</p>
+                        </div>
+                    </div>
+                    <div class="col-lg col-md-6 mb-4">
+                        <div class="contact">
+                            <img src="imagenes/Sebastian.jpeg" alt="Contacto 4" class="img-fluid">
+                            <h4>Sebastian Luis O.</h4>
+                            <p>Programador</p>
+                            <p>Email: sabstian.luis714@gmail.com</p>
+                            <p>Teléfono: +57 3208173123</p>
+                        </div>
+                    </div>
+                    <div class="col-lg col-md-6 mb-4">
+                        <div class="contact">
+                            <img src="imagenes/Nico.jpeg" alt="Contacto 5" class="img-fluid">
+                            <h4>Nicolás H. Flórez</h4>
+                            <p>Programador</p>
+                            <p>Email: nhflorez28@gmail.com</p>
+                            <p>Teléfono: +57 3194811241</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 STRAV. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap Bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script personalizado -->
+    <script>
+        // Para el desplazamiento suave al hacer clic en los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Para ocultar/mostrar la barra de navegación al desplazarse
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('hidden'); // Oculta el encabezado al desplazarse hacia abajo
+            } else {
+                header.classList.remove('hidden'); // Muestra el encabezado al desplazarse hacia arriba
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+/* Reset y fuente */
+body, html {
+  margin: 0; padding: 0; height: 100%;
+  font-family: 'Press Start 2P', cursive, monospace;
+  background: #0a0a0a;
+  color: #ffc107;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  user-select: none;
+}
+
+#game-header, #game-footer {
+  background: #222;
+  color: #ffc107;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px #ffc107aa;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+#contenedor {
+  width: 960px;
+  height: 480px;
+  border: 4px solid #ffdd00;
+  box-shadow:
+    inset 0 0 15px #ffc107aa,
+    0 0 25px #ffc107cc;
+  position: relative;
+  overflow: hidden;
+  background-image: url('models/ciudad-fondo.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* Suelo visible */
+#contenedor::before {
+  content: '';
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #654321, #a67c39);
+  box-shadow: inset 0 3px 5px #8b6b33, 0 3px 5px rgba(0,0,0,0.4);
+  z-index: 5;
+  pointer-events: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  opacity: 0%;
+}
+
+/* Personaje */
+#contenedor img#personaje {
+  position: absolute;
+  bottom: 60px;
+  width: 120px;
+  user-select: none;
+  pointer-events: none;
+  image-rendering: pixelated;
+  z-index: 10;
+  transition: left 0.3s ease;
+}
+
+/* Contenedor posiciones (los círculos) */
+#posiciones {
+  position: absolute;
+  bottom: 50px; /* justo encima del suelo */
+  left: 50px;    /* margen para empezar alineado con personaje */
+  width: 860px;  /* 10 espacios x 80px cada uno + algo de margen */
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.posicion {
+  width: 25px;
+  height: 25px;
+  border: 3px solid #ffc107;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 10px #ffc10799;
+  transition: background 0.3s ease;
+}
+
+.posicion.activa {
+  background: #ffc107;
+}
+
+/* Contador monedas */
+#monedas-container {
+  margin-top: 12px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#monedas-container img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Footer */
+#game-footer a {
+  color: #ffc107;
+  text-decoration: none;
+}
+#game-footer a:hover {
+  text-decoration: underline;
+}

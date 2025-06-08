@@ -1,0 +1,212 @@
+/* Variables CSS para mejor mantenimiento */
+:root {
+  --primary-color: #4a4a4a;
+  --secondary-color: #333;
+  --hover-color: #666;
+  --background-light: #f5f5f5;
+  --background-dark: #000000;
+  --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  --border-radius: 5px;
+  --transition: all 0.3s ease;
+  --font-family: 'Poppins', sans-serif;
+}
+
+/* Reset y estilos base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #212529;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header optimizado */
+header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.logo img {
+  max-height: 80px;
+  width: auto;
+}
+
+.service-text {
+  font-size: 16px;
+  margin-left: 20px;
+  color: #fff;
+}
+
+.header-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* Contenedor principal */
+.main-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  flex-grow: 1;
+}
+
+/* Footer */
+footer {
+  background-color: var(--secondary-color);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Botones optimizados */
+.btn-custom {
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: var(--transition);
+  margin: 8px 0;
+  font-weight: bold;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-custom:hover {
+  background-color: var(--hover-color);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.logout-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  background-color: #1a100f;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Cards optimizadas */
+.card {
+  border: none;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+.button-icon {
+  margin-right: 8px;
+}
+
+/* Theme toggle */
+#themeToggle:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+/* Dark mode styles */
+[data-bs-theme="dark"] {
+  --background-light: var(--background-dark);
+  --primary-color: #333;
+  --secondary-color: #444;
+}
+
+[data-bs-theme="dark"] body {
+  background-color: var(--background-dark);
+  color: #f1f1f1;
+}
+
+[data-bs-theme="dark"] header {
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+[data-bs-theme="dark"] .main-container,
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .dropdown-menu {
+  background-color: #606060 !important;
+  color: #e0e0e0 !important;
+}
+
+[data-bs-theme="dark"] .btn-custom {
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
+}
+
+[data-bs-theme="dark"] .btn-custom:hover {
+  background-color: var(--background-dark) !important;
+}
+
+[data-bs-theme="dark"] .logout-btn {
+  background-color: var(--secondary-color) !important;
+  color: white !important;
+}
+
+[data-bs-theme="dark"] .logout-btn:hover {
+  background-color: var(--background-dark) !important;
+}
+
+[data-bs-theme="dark"] footer {
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+[data-bs-theme="dark"] .user-info h5,
+[data-bs-theme="dark"] .user-info small {
+  color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] #themeToggle:hover {
+  background-color: #e0e0e0;
+  color: #000;
+  border-color: #e0e0e0;
+}
+
+/* Responsive optimizations */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 24px;
+  }
+  
+  .service-text {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  .main-container {
+    margin: 20px auto;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-title {
+    font-size: 20px;
+  }
+  
+  .logo img {
+    max-height: 60px;
+  }
+}

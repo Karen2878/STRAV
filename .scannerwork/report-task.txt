@@ -1,0 +1,6 @@
+projectKey=proyecto-strav
+serverUrl=http://localhost:9000
+serverVersion=25.5.0.107428
+dashboardUrl=http://localhost:9000/dashboard?id=proyecto-strav
+ceTaskId=10ca84d6-03cc-476e-ac52-ed8e714e2735
+ceTaskUrl=http://localhost:9000/api/ce/task?id=10ca84d6-03cc-476e-ac52-ed8e714e2735

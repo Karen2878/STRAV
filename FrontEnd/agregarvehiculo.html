@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Agregar Vehículo - STRAV</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="imagenes/logo.png">
+  
+  <!-- DNS Prefetch para recursos externos -->
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  
+  <!-- Preconnect para Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- CSS Crítico - Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
+  <!-- CSS No crítico - Diferido -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- CSS Crítico Inline -->
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-display: swap;
+    }
+
+    .header-custom {
+      background-color: #4a4a4a;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    .logo img { 
+      max-height: 80px;
+      width: auto;
+    }
+
+    .service-text {
+      font-size: 16px;
+      margin-left: 20px;
+      color: #fff;
+    }
+
+    .header-title {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .logout-button {
+      background-color: #333;
+      color: white;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .logout-button:hover {
+      background-color: #1a100f;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .form-container {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .btn-register {
+      background-color: #4a4a4a;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .btn-register:hover {
+      background-color: #666;
+    }
+
+    .footer {
+      background-color: #4a4a4a;
+      color: white;
+      padding: 10px 0;
+    }
+
+    /* Optimización de formulario */
+    .form-control {
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    /* Loading state */
+    .btn-loading {
+      position: relative;
+      pointer-events: none;
+    }
+
+    .btn-loading::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      margin-left: -8px;
+      margin-top: -8px;
+      border: 2px solid transparent;
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: button-loading-spinner 1s ease infinite;
+    }
+
+    @keyframes button-loading-spinner {
+      from {
+        transform: rotate(0turn);
+      }
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  </style>
+
+  <!-- Script crítico para tema (inline para evitar FOUC) -->
+  <script>
+    (function() {
+      'use strict';
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
+    })();
+  </script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <header class="header-custom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-auto">
+          <div class="logo">
+            <img src="imagenes/logo.png" 
+                 alt="Logo de STRAV"
+                 loading="lazy"
+                 width="80" 
+                 height="80">
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="service-text">Sistema Temprano de Recordatorios y Alertas de tu Vehículo</div>
+        </div>
+        <div class="col-md-auto">
+          <div class="header-title text-md-end">Agregar Vehículo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container my-4">
+    <div class="row justify-content-end mb-3">
+      <div class="col-auto">
+        <a class="btn logout-button" href="../BackEnd/cerrarsesion.php" aria-label="Cerrar sesión">Cerrar Sesión</a>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div id="mensajeServidor" class="alert d-none text-center" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="form-container bg-white p-4 mb-4">
+          <h2 class="text-center mb-4">Agregar Vehículo</h2>
+          <form action="../BackEnd/insertarvehiculo.php" method="POST" enctype="multipart/form-data" id="vehiculoForm" novalidate>
+            <div class="mb-3">
+              <label for="fechaCompraVeh" class="form-label">Fecha de Compra:</label>
+              <input type="date" 
+                     class="form-control" 
+                     id="fechaCompraVeh"
+                     name="fechaCompraVeh" 
+                     required
+                     aria-describedby="fechaCompraHelp">
+              <div class="invalid-feedback">Por favor, selecciona una fecha válida.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="placaVeh" class="form-label">Placa:</label>
+              <input type="text" 
+                     class="form-control" 
+                     id="placaVeh"
+                     name="placaVeh" 
+                     required
+                     maxlength="6"
+                     pattern="[A-Za-z0-9]{6}"
+                     placeholder="Ej: ABC123"
+                     aria-describedby="placaHelp">
+              <div class="invalid-feedback">La placa debe tener 6 caracteres alfanuméricos.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="tipoVeh" class="form-label">Tipo de Vehículo:</label>
+              <select class="form-control" id="tipoVeh" name="tipoVeh" required>
+                <option value="">Selecciona un tipo</option>
+                <option value="Automóvil">Automóvil</option>
+                <option value="Motocicleta">Motocicleta</option>
+                <option value="Camioneta">Camioneta</option>
+                <option value="Camión">Camión</option>
+                <option value="Bus">Bus</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <div class="invalid-feedback">Por favor, selecciona el tipo de vehículo.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="marcaVeh" class="form-label">Marca:</label>
+              <input type="text" 
+                     class="form-control" 
+                     id="marcaVeh"
+                     name="marcaVeh" 
+                     required
+                     maxlength="50"
+                     placeholder="Ej: Toyota, Honda, Chevrolet">
+              <div class="invalid-feedback">Por favor, ingresa la marca del vehículo.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="imagen" class="form-label">Imagen del Vehículo:</label>
+              <input type="file" 
+                     class="form-control" 
+                     id="imagen"
+                     name="imagen" 
+                     accept="image/jpeg,image/jpg,image/png,image/webp" 
+                     required
+                     aria-describedby="imagenHelp">
+              <div id="imagenHelp" class="form-text">Formatos permitidos: JPG, PNG, WebP. Tamaño máximo: 5MB</div>
+              <div class="invalid-feedback">Por favor, selecciona una imagen válida.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="anioVeh" class="form-label">Año:</label>
+              <input type="number" 
+                     class="form-control" 
+                     id="anioVeh"
+                     name="anioVeh" 
+                     required
+                     min="1900" 
+                     max="2025"
+                     placeholder="Ej: 2020">
+              <div class="invalid-feedback">Por favor, ingresa un año válido (1900-2025).</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="fechaVenSOAT" class="form-label">Fecha de compra del SOAT:</label>
+              <input type="date" 
+                     class="form-control" 
+                     id="fechaVenSOAT"
+                     name="fechaVenSOAT" 
+                     required>
+              <div class="invalid-feedback">Por favor, selecciona la fecha del SOAT.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="fechaVenLic" class="form-label">Fecha de expedición de la Licencia de Conducción:</label>
+              <input type="date" 
+                     class="form-control" 
+                     id="fechaVenLic"
+                     name="fechaVenLic" 
+                     required>
+              <div class="invalid-feedback">Por favor, selecciona la fecha de expedición de la licencia.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="fechaVenTecno" class="form-label">Fecha de compra de la Tecnomecánica:</label>
+              <input type="date" 
+                     class="form-control" 
+                     id="fechaVenTecno"
+                     name="fechaVenTecno" 
+                     required>
+              <div class="invalid-feedback">Por favor, selecciona la fecha de la tecnomecánica.</div>
+            </div>
+            
+            <button type="submit" 
+                    class="btn btn-register w-100" 
+                    id="submitBtn"
+                    aria-describedby="submitHelp">
+              <span id="submitText">Registrar Vehículo</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <a class="btn logout-button" href="../FrontEnd/paginaprincipal.php" aria-label="Regresar a página principal">
+          <i class="bi bi-arrow-left"></i> Regresar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mt-auto">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2024 STRAV. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- CSS No crítico diferido -->
+  <style id="deferred-styles">
+    /* Aplicar Poppins cuando esté cargada */
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* === MODO OSCURO === */
+    [data-bs-theme="dark"] .form-container {
+      background-color: #2c2c2c !important;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    [data-bs-theme="dark"] .form-control,
+    [data-bs-theme="dark"] select.form-control {
+      background-color: #3a3a3a !important;
+      color: #fff !important;
+      border: 1px solid #555;
+    }
+
+    [data-bs-theme="dark"] .form-control::placeholder {
+      color: #bbb;
+    }
+
+    [data-bs-theme="dark"] .form-control:focus,
+    [data-bs-theme="dark"] select.form-control:focus {
+      background-color: #3a3a3a !important;
+      border-color: #666;
+      box-shadow: 0 0 0 0.2rem rgba(106, 106, 106, 0.25);
+    }
+
+    [data-bs-theme="dark"] label {
+      color: #ddd;
+    }
+
+    [data-bs-theme="dark"] .btn-register {
+      background-color: #4a4a4a !important;
+      color: #fff !important;
+      border: 1px solid #666;
+    }
+
+    [data-bs-theme="dark"] .btn-register:hover:not(:disabled) {
+      background-color: #666 !important;
+      color: #fff !important;
+    }
+
+    [data-bs-theme="dark"] .logout-button {
+      background-color: #444 !important;
+      color: white !important;
+    }
+
+    [data-bs-theme="dark"] .logout-button:hover {
+      background-color: #000000 !important;
+    }
+
+    [data-bs-theme="dark"] .footer {
+      background-color: #333 !important;
+      color: #fff !important;
+    }
+
+    [data-bs-theme="dark"] .form-text {
+      color: #aaa !important;
+    }
+  </style>
+
+  <!-- JavaScript optimizado -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      // Validación y envío del formulario
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('vehiculoForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const mensajeDiv = document.getElementById('mensajeServidor');
+
+        // Validación en tiempo real
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+          input.addEventListener('blur', validateField);
+          input.addEventListener('input', clearValidation);
+        });
+
+        function validateField(e) {
+          const field = e.target;
+          const isValid = field.checkValidity();
+          
+          field.classList.toggle('is-valid', isValid);
+          field.classList.toggle('is-invalid', !isValid);
+        }
+
+        function clearValidation(e) {
+          const field = e.target;
+          field.classList.remove('is-valid', 'is-invalid');
+        }
+
+        // Validación de archivo
+        const fileInput = document.getElementById('imagen');
+        fileInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            // Validar tamaño (5MB max)
+            if (file.size > 5 * 1024 * 1024) {
+              showMessage('El archivo es demasiado grande. Máximo 5MB.', 'danger');
+              fileInput.value = '';
+              return;
+            }
+            
+            // Validar tipo
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+            if (!allowedTypes.includes(file.type)) {
+              showMessage('Formato no válido. Use JPG, PNG o WebP.', 'danger');
+              fileInput.value = '';
+              return;
+            }
+          }
+        });
+
+        // Manejar envío del formulario
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          // Validar formulario
+          if (!form.checkValidity()) {
+            e.stopPropagation();
+            form.classList.add('was-validated');
+            return;
+          }
+
+          // Deshabilitar botón y mostrar loading
+          setButtonLoading(true);
+          
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch('../BackEnd/insertarvehiculo.php', {
+              method: 'POST',
+              body: formData
+            });
+
+            const text = await response.text();
+
+            if (response.ok) {
+              showMessage('✅ Vehículo registrado exitosamente.', 'success');
+              form.reset();
+              form.classList.remove('was-validated');
+              
+              // Redirigir después de 2 segundos
+              setTimeout(() => {
+                window.location.href = 'paginaprincipal.php';
+              }, 2000);
+            } else {
+              showMessage('❌ Error: ' + text, 'danger');
+              setButtonLoading(false);
+            }
+
+          } catch (error) {
+            showMessage('❌ Error de conexión. Intenta más tarde.', 'danger');
+            console.error('Error:', error);
+            setButtonLoading(false);
+          }
+        });
+
+        function setButtonLoading(isLoading) {
+          if (isLoading) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('btn-loading');
+            submitText.textContent = 'Registrando...';
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('btn-loading');
+            submitText.textContent = 'Registrar Vehículo';
+          }
+        }
+
+        function showMessage(message, type) {
+          mensajeDiv.className = `alert alert-${type} text-center`;
+          mensajeDiv.textContent = message;
+          mensajeDiv.classList.remove('d-none');
+          
+          // Scroll suave al mensaje
+          mensajeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Aplicar tema guardado
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-bs-theme', savedTheme);
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
